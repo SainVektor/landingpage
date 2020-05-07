@@ -3,6 +3,7 @@
 
 <head>
     <title>SainVektor</title>
+    <link rel="shortcut icon" href="images/about.png" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -25,6 +26,8 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+    <link rel="manifest" href="manifest.json">
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="/__/firebase/7.14.2/firebase-app.js"></script>
 
@@ -39,6 +42,45 @@
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="home-section">
 
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAouuOAcK4IYzXdFrpUK-fK87ww2Jo0nwU",
+            authDomain: "sainvektor209.firebaseapp.com",
+            databaseURL: "https://sainvektor209.firebaseio.com",
+            projectId: "sainvektor209",
+            storageBucket: "sainvektor209.appspot.com",
+            messagingSenderId: "408328516564",
+            appId: "1:408328516564:web:77949a9ca3bd1d57979c41",
+            measurementId: "G-8Y9REGVE4B"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function() {
+                    console.log('Service Worker Registered');
+                });
+        }
+    </script>
+
+    <script>
+        const messaging = firebase.messaging();
+        messaging.requestPermission()
+            .then(function() {
+                console.log('Notification permission granted.');
+                return messaging.getToken();
+            })
+            .then(function(token) {
+                console.log(token);
+            })
+            .catch(function(err) {
+                console.log('Unable to get permission to notify.', err);
+            })
+    </script>
 
     <div id="overlayer"></div>
     <div class="loader">
